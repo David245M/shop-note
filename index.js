@@ -6,7 +6,8 @@ const app = express()
 const port = config.get('port')
 const uri = config.get('uri')
 
-app.use('/api/auth', require('../../Projects/shop-note/routes/auth.routes'))
+app.use(express.json())
+app.use('/api/auth', require('./routes/auth.routes'))
 
 const start = async () => {
   try {

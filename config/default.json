@@ -1,5 +1,5 @@
 {
   "port": 5000,
-  "uri": "mongodb+srv://michaelAdmin:misha2424@mongotest.yd4kl.mongodb.net/app?retryWrites=true&w=majoritys",
+  "uri": "mongodb+srv://michaelAdmin:misha2424@mongotest.yd4kl.mongodb.net/app?retryWrites=true&w=majority",
   "jwtSecret": "3Rn0eIrj2ROE8Rwug4Ku"
 }

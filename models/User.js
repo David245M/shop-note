@@ -6,6 +6,10 @@ const userShema = new Schema({
     required: true,
     unique: true
   },
+  nick: {
+    type: String,
+    required: true
+  },
   password: {
     type: String,
     required: true
@@ -16,6 +20,13 @@ const userShema = new Schema({
       ref: 'List'
     }
   ]
+},
+{
+  versionKey: false,
+  timestamps: {
+    createdAt: 'created',
+    updatedAt: 'updated'
+  }
 })
 
 module.exports = model('User', userShema)
