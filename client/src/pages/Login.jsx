@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../contexts/Auth'
 
 const LoginPage = () => {
+  const auth = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -14,13 +16,17 @@ const LoginPage = () => {
         body: JSON.stringify({ email, password })
       })
       const result = await response.json()
+      if (result) {
+        auth.login(result.token, result.userId)
+      }
     } catch (e) {
       console.error(e)
     }
   }
 
   return (
-    <>
+    <>      
+      <Link to="/">Home</Link>
       <h1>Authorisation</h1>
       <form onSubmit={onSubmit}>
         <input name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email"/>

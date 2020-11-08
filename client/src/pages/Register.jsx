@@ -22,6 +22,7 @@ const RegisterPage = () => {
 
   return (
     <>
+      <Link to="/">Home</Link>    
       <h1>Register</h1>
       <form onSubmit={onSubmit}>
         <input name="nick" value={nick} onChange={e => setNick(e.target.value)} placeholder="Nick"/>
