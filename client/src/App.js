@@ -12,6 +12,7 @@ const Header = () => {
       <Switch>
         <Route exact path="/">MAIN PA1GE</Route>
         <Route path="/login">NO HOME PAGE</Route>
+        <Route path="/register">NO HOME PAGE</Route>
       </Switch>
     </h1>
   )

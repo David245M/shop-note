@@ -120,17 +120,12 @@ const LoginPage = () => {
       
       
       <Form.Item {...thirdLayout} >
-      <Row justify="space-between" align="middle">
-        <Form.Item style={{width: "100%"}}>{/*Я щось не знаю як це зробити по іншому і там ошибка коли в режимі тєлєфа кнопка злітає*/}
+        <Row lg={{span: 24}} md={{span: 24}} sm={{span: 24}}>{/*Я щось не знаю як це зробити по іншому і там ошибка коли в режимі тєлєфа кнопка злітає*/}
           <Button type="primary" htmlType="submit">
             Log in
           </Button>
-        </Form.Item>
-        <Form.Item>
-          Or <Link to="/register" >Register</Link>
-        </Form.Item>
-      </Row>
-      
+        </Row>
+          <Link to="/register" >...or sign in</Link>
       </Form.Item>
       </Form> 
       
