@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../contexts/Auth'
 import 'antd/dist/antd.css';
@@ -37,8 +37,9 @@ const thirdLayout = {
 
 const LoginPage = () => {
   const { login } = useContext(AuthContext)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  //смотри, хуки на каждое поле не нужны, можно получать к ним доступ 
+  //из values в onSubmit
+  //название поля будет братся из атрибута name у Form.Item, поэтому важно их не забывать
 
   const onSubmit = async (values) => {
     try {
@@ -63,8 +64,8 @@ const LoginPage = () => {
         initialValues={{
           remember: true, //вот эта штучка пока ни на что не влияет)) 
           //нє, воно работає, воно при перезапуску сторінки ставить галочку
+          //да, оно работает, но чекбокс ни на что не влияет
         }}
-        //завжди проходить логін, незавжаючи на пароль і логін який вписаний
         onFinish={onSubmit}
       >
       <Form.Item
@@ -79,9 +80,7 @@ const LoginPage = () => {
       >
         <Input 
           prefix={<UserOutlined className="site-form-item-icon" />} 
-          value={email} 
           type="email"
-          onChange={e => setEmail(e.target.value)} 
           placeholder="Email"
         />
       </Form.Item>
@@ -97,8 +96,6 @@ const LoginPage = () => {
       >
         <Input 
           prefix={<LockOutlined className="site-form-item-icon" />} 
-          value={password} 
-          onChange={e => setPassword(e.target.value)} 
           type="password" 
           placeholder="Password"
         />
@@ -118,12 +115,12 @@ const LoginPage = () => {
       
       
       <Form.Item {...thirdLayout} >
-        <Row lg={{span: 24}} md={{span: 24}} sm={{span: 24}}>{/*Я щось не знаю як це зробити по іншому і там ошибка коли в режимі тєлєфа кнопка злітає*/}
+        <Row lg={{span: 24}} md={{span: 24}} sm={{span: 24}}>{/*бро, Row и так всю возможную ширину занимает, это бесполезно*/}
           <Button type="primary" htmlType="submit">
             Log in
           </Button>
         </Row>
-          <Link to="/register" >...or sign in</Link>
+          <Link to="/register" >...or register</Link>
       </Form.Item>
       </Form> 
       
