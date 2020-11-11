@@ -48,9 +48,7 @@ const LoginPage = () => {
         body: JSON.stringify(values)
       })
       const result = await response.json()
-      if (result) {
-        login(values)
-      }
+      response.ok && login(result.token, result.userId)
     } catch (e) {
       console.error(e)
     }
