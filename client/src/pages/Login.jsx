@@ -2,18 +2,14 @@ import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../contexts/Auth'
 import 'antd/dist/antd.css';
-import { Form, Input, Button, Checkbox, Row } from 'antd';
+import { Form, Input, Button, Checkbox, Row} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 // import { StepForwardOutlined } from 'antd';
 
-//TODO: 
 
-//использовать инлайновый css в данном случае плохо, так как
-//у тебя не выравниваються инпуты в один столбик
-//А вот это как раз надо было и использовать))
-const layout = {
+const firstlayout = {
   labelCol: { 
-    lg: { span:8,},
+    lg: { span: 8, },
     md: { span: 8, offset: 2 },
     sm: { span: 7, offset: 2 },
   },
@@ -23,11 +19,19 @@ const layout = {
     sm: { span: 8 },
   },
 };
-const tailLayout = {
+const secondLayout = {
   wrapperCol: { 
-    lg: { span: 8, offset: 8 },
+    lg: { span: 8, offset: 8},
     md: { span: 10, offset: 7},
     sm: { span: 12, offset: 5},
+  },
+};
+
+const thirdLayout = {
+  wrapperCol: { 
+    lg: { span: 12, offset: 12 },
+    md: { span: 16, offset: 12},
+    sm: { span: 20, offset: 11},
   },
 };
 
@@ -55,15 +59,14 @@ const LoginPage = () => {
   return (
     <>      
       <Link to="/">Home</Link>
-      <h1>Authorisation</h1>
-      {/* Делай внятные отсупы, что бы было видно уровень вложенности */}
       <Form 
-        {...layout}
-      name="login" //название должно говорить о чем-то
+        {...firstlayout}
+        name="login"
         initialValues={{
-          remember: true, //вот эта штучка пока ни на что не влияет))
+          remember: true, //вот эта штучка пока ни на что не влияет)) 
+          //нє, воно работає, воно при перезапуску сторінки ставить галочку
         }}
-        //сабмит формы лучше делать не на клике по кнопке а у формы есть специальный метод
+        //завжди проходить логін, незавжаючи на пароль і логін який вписаний
         onFinish={onSubmit}
       >
       <Form.Item
@@ -76,7 +79,6 @@ const LoginPage = () => {
           },
         ]}
       >
-        {/* если пропсов много то лучше их форматировать вот так */}
         <Input 
           prefix={<UserOutlined className="site-form-item-icon" />} 
           value={email} 
@@ -89,8 +91,7 @@ const LoginPage = () => {
       <Form.Item
         label="Password"
         name="password"
-        rules={[
-          {
+        rules={[{
             required: true,
             message: 'Please input your password!',
           },
@@ -104,7 +105,7 @@ const LoginPage = () => {
           placeholder="Password"
         />
       </Form.Item>  
-      <Form.Item {...tailLayout}>
+      <Form.Item {...secondLayout}>
         <Row justify="space-between" align="middle">
           <Form.Item name="remember" valuePropName="checked">
             <Checkbox>Remember me</Checkbox>
@@ -117,12 +118,19 @@ const LoginPage = () => {
         </Row>
       </Form.Item>
       
-      {/* для кнопки попробуй выравнивание сделать сам */}
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Log in
-        </Button>
-        Or <Link to="/register" >Register</Link>
+      
+      <Form.Item {...thirdLayout} >
+      <Row justify="space-between" align="middle">
+        <Form.Item style={{width: "100%"}}>{/*Я щось не знаю як це зробити по іншому і там ошибка коли в режимі тєлєфа кнопка злітає*/}
+          <Button type="primary" htmlType="submit">
+            Log in
+          </Button>
+        </Form.Item>
+        <Form.Item>
+          Or <Link to="/register" >Register</Link>
+        </Form.Item>
+      </Row>
+      
       </Form.Item>
       </Form> 
       
