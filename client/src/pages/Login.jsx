@@ -22,13 +22,14 @@ const firstlayout = {
 const secondLayout = {
   wrapperCol: { 
     lg: { span: 8, offset: 8},
-    md: { span: 10, offset: 7},
+    md: { span: 10, offset: 8},
     sm: { span: 12, offset: 5},
   },
 };
 
 const thirdLayout = {
   wrapperCol: { 
+    xs: { span: 24, offset: 9},
     lg: { span: 12, offset: 12 },
     md: { span: 16, offset: 12},
     sm: { span: 20, offset: 11},
@@ -115,8 +116,8 @@ const LoginPage = () => {
       
       
       <Form.Item {...thirdLayout} >
-        <Row lg={{span: 24}} md={{span: 24}} sm={{span: 24}}>{/*бро, Row и так всю возможную ширину занимает, это бесполезно*/}
-          <Button type="primary" htmlType="submit">
+        <Row>
+          <Button type="primary" htmlType="submit" >
             Log in
           </Button>
         </Row>

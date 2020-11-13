@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Input, Tooltip, Option, Row, Col, Checkbox, Button } from 'antd';
+import { Form, Input, Tooltip, Option, Row, Col, Checkbox, Button, Typography } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 
+
+const { Title } = Typography;
 // const { Option } = Select;
 // так як Велікій сенсей Міхаіл учіл
 const formItemLayout = {
   labelCol: {
     sm: { span: 8},
-    md: { span: 7},
+    md: { span: 8},
     lg: { span: 8}
   },
   wrapperCol: {
@@ -17,12 +19,32 @@ const formItemLayout = {
     lg: { span: 8 }
   },
 };
+
 const tailFormItemLayout = {
   wrapperCol: {
+    
     sm: {span: 17, offset: 10},
     md: {span: 13, offset: 9},
     lg: {span: 20, offset: 10},
   },
+};
+
+const buttonLayout = {
+  wrapperCol: {
+    xs: { span: 24, offset: 9},
+    sm: {span: 17, offset: 10},
+    md: {span: 13, offset: 9},
+    lg: {span: 20, offset: 10},
+  },
+}
+
+
+const titleLayout = {
+    xs: {span: 18, offset: 5},
+    sm: {span: 11, offset: 8},
+    md: {span: 9, offset: 9},
+    lg: {span: 7, offset: 10},
+  
 };
 
 const RegisterPage = () => {
@@ -58,18 +80,42 @@ const RegisterPage = () => {
 
   return (
     <>
+      
+      
+          <Row >
+            <Col {...titleLayout}>
+              <Title level={2}>
+                  CREATE ACCOUNT
+              </Title>
+            </Col>
+          </Row>
+      
 
       <Link to="/">Home</Link>    
       <Form
         {...formItemLayout}
         form={form}
         name="register"
-        // onFinish={onSubmit}
+        onFinish={onSubmit}
         initialValues={{
           prefix: '+380',//поки нічьо не робить
         }}
         // scrollToFirstError
       >
+        <Form.Item 
+         name="name"
+          label={
+            <span>
+              Nickname&nbsp;
+              <Tooltip title="What do you want others to call you?">
+                <QuestionCircleOutlined />
+              </Tooltip>
+            </span>
+          }
+          rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}
+        >
+          <Input value={nick} onChange={e => setNick(e.target.value)} placeholder="Your Name"/>
+        </Form.Item>
         <Form.Item
           name="email"
           label="E-mail"
@@ -84,7 +130,7 @@ const RegisterPage = () => {
             },
           ]}
         >
-          <Input value={email} onChange={e => setEmail(e.target.value)} placeholder="E-mail"/>
+          <Input value={email} onChange={e => setEmail(e.target.value)} placeholder="Your Email"/>
         </Form.Item>
 
         <Form.Item
@@ -98,7 +144,7 @@ const RegisterPage = () => {
           ]}
           // hasFeedback
         >
-          <Input.Password />
+          <Input.Password placeholder="Password"/>
         </Form.Item>
 
         <Form.Item
@@ -121,23 +167,10 @@ const RegisterPage = () => {
             }),
           ]}
         >
-          <Input.Password value={password} onChange={e => setPassword(e.target.value)} placeholder="Password"/>
+          <Input.Password value={password} onChange={e => setPassword(e.target.value)} placeholder="Repeat your Password"/>
        </Form.Item>
 
-       <Form.Item 
-         name="nickname"
-          label={
-            <span>
-              Nickname&nbsp;
-              <Tooltip title="What do you want others to call you?">
-                <QuestionCircleOutlined />
-              </Tooltip>
-            </span>
-          }
-          rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}
-        >
-          <Input value={nick} onChange={e => setNick(e.target.value)} placeholder="Nick"/>
-        </Form.Item>
+       
             {/*Це я оставив эслі захочим добавити тєлєф*/}
         {/* <Form.Item          
           name="phone"
@@ -159,13 +192,13 @@ const RegisterPage = () => {
           {...tailFormItemLayout}
         >
           <Checkbox>
-            I have read the <a href="/home">agreement</a>
+            I agree all statements in <a href="/home">Terms of services</a>
           </Checkbox>
         </Form.Item>
-      
-        <Form.Item {...tailFormItemLayout} >
-          <Row lg={{span: 24}} md={{span: 24}} sm={{span: 24}}>{/*я шось не придумав як по іншому зробити */}
-            <Button type="primary" htmlType="rules" >
+    
+        <Form.Item {...buttonLayout}>
+          <Row xs={{ span: 24, offset: 9}}>
+            <Button type="primary" htmlType="rules">
               Register
             </Button>
           </Row>
