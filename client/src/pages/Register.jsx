@@ -82,16 +82,15 @@ const RegisterPage = () => {
     <>
       
       
-          <Row >
-            <Col {...titleLayout}>
-              <Title level={2}>
-                  CREATE ACCOUNT
-              </Title>
-            </Col>
-          </Row>
+      <Row >
+        <Col {...titleLayout}>
+          <Title level={2}>
+              CREATE ACCOUNT
+          </Title>
+        </Col>
+      </Row>
       
 
-      <Link to="/">Home</Link>    
       <Form
         {...formItemLayout}
         form={form}
@@ -134,7 +133,7 @@ const RegisterPage = () => {
         </Form.Item>
 
         <Form.Item
-          name="password"
+          name="first-password"
           label="Password"
           rules={[
             {
@@ -148,7 +147,7 @@ const RegisterPage = () => {
         </Form.Item>
 
         <Form.Item
-          name="confirm"
+          name="password"
           label="Confirm Password"
           dependencies={['password']}
           hasFeedback
@@ -181,7 +180,7 @@ const RegisterPage = () => {
         </Form.Item> */}
 
         <Form.Item
-          name="agreement"
+          name="agree"
           valuePropName="checked"
           rules={[
             {

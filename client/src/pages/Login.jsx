@@ -58,7 +58,7 @@ const LoginPage = () => {
 
   return (
     <>      
-      <Link to="/">Home</Link>
+      
       <Form 
         {...firstlayout}
         name="login"
